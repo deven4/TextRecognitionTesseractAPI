@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.atgproject.CustomLayout
+    <com.example.atgproject.CustomViews.CustomLayout
         android:id="@+id/customView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -33,7 +33,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/myBtn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/materialButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -45,6 +45,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/resetBtn"
+            app:layout_constraintTop_toTopOf="@+id/resetBtn" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Draw Circle"
+            android:onClick="drawCircle"
+            app:layout_constraintBottom_toBottomOf="@+id/resetBtn"
+            app:layout_constraintEnd_toStartOf="@+id/resetBtn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/resetBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

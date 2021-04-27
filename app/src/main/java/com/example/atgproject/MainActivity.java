@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.atgproject.CustomViews.CustomLayout;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
@@ -120,5 +121,9 @@ public class MainActivity extends AppCompatActivity implements OCRThread.textRec
         progressDialog.dismiss();
         ErrorBottomSheet bottomSheet = new ErrorBottomSheet(exception);
         bottomSheet.show(getSupportFragmentManager(), "");
+    }
+
+    public void drawCircle(View view) {
+        startActivity(new Intent(MainActivity.this,CircleActivity.class));
     }
 }

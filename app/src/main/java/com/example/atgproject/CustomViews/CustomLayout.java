@@ -1,4 +1,4 @@
-package com.example.atgproject;
+package com.example.atgproject.CustomViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,9 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import com.example.atgproject.R;
 
 public class CustomLayout extends ViewGroup {
 
@@ -167,18 +166,6 @@ public class CustomLayout extends ViewGroup {
                 final int width = child.getMeasuredWidth();
                 final int height = child.getMeasuredHeight();
 
-                // Compute the frame in which we are placing this child.
-//                if (lp.position == LayoutParams.POSITION_LEFT) {
-//                    mTmpContainerRect.left = leftPos + lp.leftMargin;
-//                    mTmpContainerRect.right = leftPos + width + lp.rightMargin;
-//                    leftPos = mTmpContainerRect.right;
-//                } else if (lp.position == LayoutParams.POSITION_RIGHT) {
-//                    mTmpContainerRect.right = rightPos - lp.rightMargin;
-//                    mTmpContainerRect.left = rightPos - width - lp.leftMargin;
-//                    rightPos = mTmpContainerRect.left;
-//                } else {
-//
-//                }
                 mTmpContainerRect.left = middleLeft + lp.leftMargin;
                 mTmpContainerRect.right = middleRight - lp.rightMargin;
                 mTmpContainerRect.top = parentTop + lp.topMargin;
