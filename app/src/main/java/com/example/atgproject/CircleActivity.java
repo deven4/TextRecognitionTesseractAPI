@@ -3,7 +3,6 @@ package com.example.atgproject;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.RotateAnimation;
@@ -25,12 +24,12 @@ public class CircleActivity extends AppCompatActivity {
 
     private static final String TAG = "CIRCLE_TAG";
     public static ArrayList<CirclePoints> circleList = new ArrayList<>();
+    public static CirclePoints point = null;
 
     float centerX;
     float centerY;
     double radius;
-    float movedX, movedY;
-    boolean isDragged = false;
+    double startAngle;
 
     View divider1Pivot;
     View divider2Pivot;
@@ -92,9 +91,17 @@ public class CircleActivity extends AppCompatActivity {
                 + ((pivotLoc[1] - centerY) * (pivotLoc[1] - centerY)));
 
 
-        circleList.add(new CirclePoints(centerX, centerY, (float) radius));
-        circleView.invalidate();
+        // Calculating the angle from the center of the circle to the point on circle.
+        startAngle = Math.toDegrees(Math.atan2(pivotLoc[1] - centerY, pivotLoc[0] - centerX));
+        Log.d(TAG, "old Angle: " + startAngle);
 
+        circleList.add(new CirclePoints(centerX, centerY, (float) radius));
+        CircleAnimation circleAnimation = new CircleAnimation(circleView, (float) startAngle, 360);
+        circleAnimation.setDuration(3000);
+        circleAnimation.start();
+        circleView.startAnimation(circleAnimation);
+
+        // Animation to rotate the compass
         RotateAnimation rotateAnimation = new RotateAnimation(0f, 360f, centerX, centerY);
         rotateAnimation.setDuration(3000);
         dividerLayout.setAnimation(rotateAnimation);
@@ -114,7 +121,6 @@ public class CircleActivity extends AppCompatActivity {
         int[] loc = new int[2];
         view.getLocationOnScreen(loc);
         loc[1] = loc[1] - statusBarHeight;
-        Log.d(TAG, "new loc[1]: " + loc[1]);
         return loc;
     }
 
