@@ -1,4 +1,4 @@
-package com.example.atgproject.MultiTouchListener;
+package com.example.atgproject.CustomTouchListeners;
 
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,7 +20,7 @@ import android.view.View;
  * </ul>
  */
 public class ScaleGestureDetector {
-    private static final String TAG = "ScaleGestureDetector";
+    private static final String TAG = "mTAG";
 
     /**
      * The listener for receiving notifications when gestures occur.

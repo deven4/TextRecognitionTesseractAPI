@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
@@ -57,19 +56,24 @@ public class CircleView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // Calculating the circle rect (Bounding Box)
         for (int i = 0; i < circleList.size(); i++) {
 
             CirclePoints point = circleList.get(i);
-            if (i == circleList.size() - 1) {
-                rectF.top = point.getCenterY() - point.getRadius();
-                rectF.left = point.getCenterX() - point.getRadius();
-                rectF.right = point.getCenterX() + point.getRadius();
-                rectF.bottom = point.getCenterY() + point.getRadius();
-                canvas.drawArc(rectF, startAngle, circleAngle, false, paint);
+
+            // Calculating the circle rect (Bounding Box)
+            rectF.top = point.getCenterY() - point.getRadius();
+            rectF.left = point.getCenterX() - point.getRadius();
+            rectF.right = point.getCenterX() + point.getRadius();
+            rectF.bottom = point.getCenterY() + point.getRadius();
+
+            if (point.getTYPE() == CirclePoints.TYPES.ARC) {
+                canvas.drawArc(rectF, point.getStartAngle(), point.getSweepedAngle(), false, paint);
                 circleAngle = 0;
-            } else
+            } else if (point.getTYPE() == CirclePoints.TYPES.CIRCLE)
                 canvas.drawCircle(point.getCenterX(), point.getCenterY(), point.getRadius(), paint);
+            else if (i == circleList.size() - 1) {
+                canvas.drawArc(rectF, startAngle, circleAngle, false, paint);
+            }
 
             rectF.left = point.getCenterX();
             rectF.top = point.getCenterY();
@@ -82,7 +86,7 @@ public class CircleView extends View {
     public void setStartAngle(float startAngle) {
         this.startAngle = startAngle;
     }
-    
+
     public float getCircleAngle() {
         return circleAngle;
     }

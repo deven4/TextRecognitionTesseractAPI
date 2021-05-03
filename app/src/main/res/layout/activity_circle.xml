@@ -17,78 +17,99 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:elevation="1dp"
-                android:src="@drawable/ic_divider_top"
-                android:translationX="-12dp" />
-
-        </RelativeLayout>
-
+        <!-- Whole Compass    -->
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_divider_part_1" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:transformPivotY="18dp">
+                android:layout_marginStart="12dp"
+                android:elevation="1dp"
+                android:src="@drawable/ic_divider_top"
+                android:translationY="12dp" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:orientation="horizontal">
+
+                <!--    Left Divider with pencil           -->
+                <LinearLayout
+                    android:id="@+id/leftDividerLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    android:transformPivotX="60dp"
+                    android:transformPivotY="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/pencil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical"
+                        android:translationX="6.59dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pencil" />
+
+                        <View
+                            android:id="@+id/view1"
+                            android:layout_width="1dp"
+                            android:layout_height="1dp"
+                            android:translationX="-1dp"
+                            android:translationY="-1dp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_divider1" />
+
+                </LinearLayout>
+
+                <!--    Right Divider      -->
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_divider_part_2" />
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:transformPivotY="18dp">
 
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:layout_marginEnd="16dp"
-                    android:translationX="2dp"
-                    android:translationY="-2dp" />
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_divider2" />
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:translationX="-2dp"
+                        android:translationY="-1dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <View
-            android:id="@+id/view1"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="16dp"
-            android:translationY="-2dp"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,18 +130,19 @@
         android:layout_marginBottom="16dp"
         android:text="Reset"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/materialBtn4"
+        app:layout_constraintEnd_toStartOf="@+id/checkbox"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialBtn4"
+    <CheckBox
+        android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Draw Circle"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -132,8 +154,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,4 +1,4 @@
-package com.example.atgproject.DragListener;
+package com.example.atgproject.CustomTouchListeners;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -6,16 +6,28 @@ import android.view.ViewGroup;
 
 public class DragListener implements View.OnTouchListener {
 
-    private static final String TAG = "ARROW_TOUCH";
-
+    private static final String TAG = "mTAG_DRAG";
     boolean drag = false;
+    boolean isTouchable;
+    double newFingerRotation;
     private float viewRotation;
     private double fingerRotation;
-    double newFingerRotation;
     private final ViewGroup rootLayout;
 
     public DragListener(ViewGroup rootLayout) {
         this.rootLayout = rootLayout;
+    }
+
+    private int getAngle(float xt, float yt, float x, float y) {
+        float dx = x - xt;
+        float dy = yt - y;
+
+        double inRads = Math.atan2(dy, dx);
+        return (int) Math.toDegrees(inRads);
+    }
+
+    public void setTouchable(boolean touchable) {
+        isTouchable = touchable;
     }
 
     @Override
@@ -34,10 +46,12 @@ public class DragListener implements View.OnTouchListener {
                 fingerRotation = angle;
                 break;
             case MotionEvent.ACTION_MOVE:
-                newFingerRotation = angle;
-                float currentRotation = (float) (viewRotation + newFingerRotation - fingerRotation);
-                if (currentRotation < 0 && currentRotation > -90)
-                    v.setRotation(currentRotation);
+                if(isTouchable) {
+                    newFingerRotation = angle;
+                    float currentRotation = (float) (viewRotation + newFingerRotation - fingerRotation);
+                    if (currentRotation > 0 && currentRotation < 60)
+                        v.setRotation(currentRotation);
+                }
                 break;
             case MotionEvent.ACTION_UP:
                 drag = false;
@@ -45,14 +59,5 @@ public class DragListener implements View.OnTouchListener {
                 break;
         }
         return true;
-    }
-
-
-    private int getAngle(float xt, float yt, float x, float y) {
-        float dx = x - xt;
-        float dy = yt - y;
-
-        double inRads = Math.atan2(dy, dx);
-        return (int) Math.toDegrees(inRads);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.atgproject.MultiTouchListener;
+package com.example.atgproject.CustomTouchListeners;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -7,21 +7,40 @@ import android.view.View.OnTouchListener;
 public class MultiTouchListener implements OnTouchListener {
 
     private static final int INVALID_POINTER_ID = -1;
-    public boolean isRotateEnabled;
-    public boolean isTranslateEnabled;
-    public boolean isScaleEnabled;
-    public float minimumScale = 0.5f;
-    public float maximumScale = 10.0f;
-    private int mActivePointerId = INVALID_POINTER_ID;
+    private static final String TAG = "mTAG";
+
     private float mPrevX;
     private float mPrevY;
-    private ScaleGestureDetector mScaleGestureDetector;
+    private final rotateListener mListener;
+    public float minimumScale = 0.5f;
+    public float maximumScale = 10.0f;
+    public boolean isRotateEnabled = false;
+    public boolean isScaleEnabled = false;
+    public boolean isTranslateEnabled = false;
+    private int mActivePointerId = INVALID_POINTER_ID;
+    private final ScaleGestureDetector mScaleGestureDetector;
 
-    public MultiTouchListener(boolean isRotateEnabled, boolean isScaleEnabled, boolean isTranslateEnabled) {
-        this.isScaleEnabled = isScaleEnabled;
-        this.isRotateEnabled = isRotateEnabled;
-        this.isTranslateEnabled = isTranslateEnabled;
+    public interface rotateListener {
+        void onRotate(View view, float currentRotation);
+
+        void onRotationEnd(View view);
+    }
+
+    public MultiTouchListener(rotateListener mListener) {
+        this.mListener = mListener;
         mScaleGestureDetector = new ScaleGestureDetector(new ScaleGestureListener());
+    }
+
+    public void setRotateEnabled(boolean rotateEnabled) {
+        isRotateEnabled = rotateEnabled;
+    }
+
+    public void setScaleEnabled(boolean scaleEnabled) {
+        isScaleEnabled = scaleEnabled;
+    }
+
+    public void setTranslateEnabled(boolean translateEnabled) {
+        isTranslateEnabled = translateEnabled;
     }
 
     private static float adjustAngle(float degrees) {
@@ -34,18 +53,23 @@ public class MultiTouchListener implements OnTouchListener {
         return degrees;
     }
 
-    private static void move(View view, TransformInfo info) {
-        computeRenderOffset(view, info.pivotX, info.pivotY);
-        adjustTranslation(view, info.deltaX, info.deltaY);
+    private void move(View view, TransformInfo info) {
 
-        // Assume that scaling still maintains aspect ratio.
-        float scale = view.getScaleX() * info.deltaScale;
-        scale = Math.max(info.minimumScale, Math.min(info.maximumScale, scale));
-        view.setScaleX(scale);
-        view.setScaleY(scale);
+        if (isTranslateEnabled && isScaleEnabled && isRotateEnabled) {
+            computeRenderOffset(view, info.pivotX, info.pivotY);
+            adjustTranslation(view, info.deltaX, info.deltaY);
 
-        float rotation = adjustAngle(view.getRotation() + info.deltaAngle);
-        view.setRotation(rotation);
+            // Assume that scaling still maintains aspect ratio.
+            float scale = view.getScaleX() * info.deltaScale;
+            scale = Math.max(info.minimumScale, Math.min(info.maximumScale, scale));
+            view.setScaleX(scale);
+            view.setScaleY(scale);
+            float rotation = adjustAngle(view.getRotation() + info.deltaAngle);
+            view.setRotation(rotation);
+        } else {
+            float currentRotation = adjustAngle(info.deltaAngle);
+            mListener.onRotate(view, currentRotation);
+        }
     }
 
     private static void adjustTranslation(View view, float deltaX, float deltaY) {
@@ -130,7 +154,6 @@ public class MultiTouchListener implements OnTouchListener {
                     mPrevY = event.getY(newPointerIndex);
                     mActivePointerId = event.getPointerId(newPointerIndex);
                 }
-
                 break;
             }
         }
@@ -142,7 +165,7 @@ public class MultiTouchListener implements OnTouchListener {
 
         private float mPivotX;
         private float mPivotY;
-        private Vector2D mPrevSpanVector = new Vector2D();
+        private final Vector2D mPrevSpanVector = new Vector2D();
 
         @Override
         public boolean onScaleBegin(View view, ScaleGestureDetector detector) {
@@ -163,13 +186,18 @@ public class MultiTouchListener implements OnTouchListener {
             info.pivotY = mPivotY;
             info.minimumScale = minimumScale;
             info.maximumScale = maximumScale;
-
             move(view, info);
             return false;
         }
+
+        @Override
+        public void onScaleEnd(View view, ScaleGestureDetector detector) {
+            mListener.onRotationEnd(view);
+            super.onScaleEnd(view, detector);
+        }
     }
 
-    private class TransformInfo {
+    private static class TransformInfo {
 
         public float deltaX;
         public float deltaY;
