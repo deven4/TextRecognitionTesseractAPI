@@ -10,9 +10,9 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.example.atgproject.CirclePoints;
+import com.example.atgproject.ModelClass.CirclePoints;
 
-import static com.example.atgproject.CircleActivity.circleList;
+import static com.example.atgproject.Activities.CircleActivity.circleList;
 
 public class CircleView extends View {
 

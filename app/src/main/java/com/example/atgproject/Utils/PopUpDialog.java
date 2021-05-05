@@ -1,4 +1,4 @@
-package com.example.atgproject;
+package com.example.atgproject.Utils;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.atgproject.R;
 import com.google.android.material.button.MaterialButton;
 
 public class PopUpDialog extends DialogFragment {

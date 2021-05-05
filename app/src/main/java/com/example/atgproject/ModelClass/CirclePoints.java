@@ -1,4 +1,4 @@
-package com.example.atgproject;
+package com.example.atgproject.ModelClass;
 
 public class CirclePoints {
 

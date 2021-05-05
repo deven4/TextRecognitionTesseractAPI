@@ -1,4 +1,4 @@
-package com.example.atgproject;
+package com.example.atgproject.Utils;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.atgproject.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 

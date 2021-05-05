@@ -1,4 +1,4 @@
-package com.example.atgproject;
+package com.example.atgproject.Activities;
 
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
@@ -15,9 +15,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.atgproject.CircleAnimation;
 import com.example.atgproject.CustomTouchListeners.DragListener;
 import com.example.atgproject.CustomTouchListeners.MultiTouchListener;
 import com.example.atgproject.CustomViews.CircleView;
+import com.example.atgproject.ModelClass.CirclePoints;
+import com.example.atgproject.R;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;

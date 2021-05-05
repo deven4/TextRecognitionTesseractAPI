@@ -26,7 +26,7 @@ public class OCRThread extends Thread {
     private final TessBaseAPI tessBaseAPI;
     private textRecognitionListener mListener;
 
-    OCRThread(Context context) {
+    public OCRThread(Context context) {
         this.context = context;
         this.handler = new Handler(context.getMainLooper());
         DESTINATION_PATH = context.getCacheDir() + DESTINATION_PATH;
@@ -112,7 +112,7 @@ public class OCRThread extends Thread {
     }
 
 
-    interface textRecognitionListener {
+    public interface textRecognitionListener {
         void onTextRecognised(String text);
 
         void onTaskFailed(String exception);

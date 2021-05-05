@@ -1,4 +1,4 @@
-package com.example.atgproject;
+package com.example.atgproject.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -15,11 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.atgproject.CustomViews.CustomLayout;
+import com.example.atgproject.OCRThread;
+import com.example.atgproject.R;
+import com.example.atgproject.Utils.ErrorBottomSheet;
+import com.example.atgproject.Utils.PopUpDialog;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements OCRThread.textRecognitionListener {
+public class PaintActivity extends AppCompatActivity implements OCRThread.textRecognitionListener {
 
     private static final String TAG = "mTAG";
 
@@ -33,10 +36,9 @@ public class MainActivity extends AppCompatActivity implements OCRThread.textRec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_paint);
 
         myBtn = findViewById(R.id.myBtn);
-//        imageView = findViewById(R.id.img);
         resetBtn = findViewById(R.id.resetBtn);
         customView = findViewById(R.id.customView);
         progressDialog = new ProgressDialog(this);
@@ -92,9 +94,6 @@ public class MainActivity extends AppCompatActivity implements OCRThread.textRec
 
 
     private Bitmap capture() {
-
-//        ViewGroup actContent = findViewById(android.R.id.content);
-        View root  = getWindow().getDecorView();
         customView.setDrawingCacheEnabled(true);
         Bitmap result = Bitmap.createBitmap(customView.getDrawingCache());
         customView.setDrawingCacheEnabled(false);
@@ -104,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements OCRThread.textRec
 //        Rect dest = new Rect(0, 0, result.getWidth(), result.getHeight());
 //        canvas.drawBitmap(customView.getDrawingCache(), src, dest, null);
 //        customView.setDrawingCacheEnabled(false);
-//        imageView.setImageBitmap(result);
-
+//       imageView.setImageBitmap(result);
         return result;
     }
 
@@ -121,9 +119,5 @@ public class MainActivity extends AppCompatActivity implements OCRThread.textRec
         progressDialog.dismiss();
         ErrorBottomSheet bottomSheet = new ErrorBottomSheet(exception);
         bottomSheet.show(getSupportFragmentManager(), "");
-    }
-
-    public void drawCircle(View view) {
-        startActivity(new Intent(MainActivity.this,CircleActivity.class));
     }
 }

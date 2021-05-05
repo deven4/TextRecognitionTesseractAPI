@@ -3,62 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <com.example.atgproject.CustomViews.CustomLayout
-        android:id="@+id/customView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLay"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLay"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="16dp"
+        android:background="@color/purple_500"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="ATG Project" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" >
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/resetBtn"
+            android:id="@+id/paintBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reset"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/myBtn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/materialButton"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/myBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Get Text"
-            app:layout_constraintBottom_toBottomOf="@+id/resetBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/resetBtn"
-            app:layout_constraintTop_toTopOf="@+id/resetBtn" />
+            android:layout_marginTop="16dp"
+            android:text="Paint" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton"
+            android:id="@+id/circleBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Draw Circle"
-            android:onClick="drawCircle"
-            app:layout_constraintBottom_toBottomOf="@+id/resetBtn"
-            app:layout_constraintEnd_toStartOf="@+id/resetBtn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/resetBtn" />
+            android:layout_marginTop="16dp"
+            android:text="Draw Circles" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/flickrImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Flickr Images" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
