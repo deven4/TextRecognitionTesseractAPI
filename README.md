@@ -4,6 +4,10 @@ If you wrote some text/character, it will try to recognise it, although it works
 * Also, You can draw circles on the canvas using a flexible compass that can rotate, scale and moved using touch gestures (Single and double).
 
 # Features: 
+ * Draw text/character on canvas.
  * Text Recognition using Tesseract API.
  * Drawing Circles using geometry compass.
+ * Rotate the compass to draw a circle or an arc.
+ * The compass can be Scaled, Rotated and Translated  using multiTouchListener.
+ * Application is  very robust.
 
