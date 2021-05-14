@@ -21,5 +21,5 @@ If you wrote some text/character, it will try to recognise it, although it works
  * Viewmodel and LiveData
 
 # Screenshots
-<img src="https://user-images.githubusercontent.com/79134401/118246916-358bb180-b4c0-11eb-92b7-297775c2b5f8.png" height=800 width=350> <img src="https://user-images.githubusercontent.com/79134401/118247870-50125a80-b4c1-11eb-890a-906c4f9f2c32.gif" height=800 width=350>
+<img src="https://user-images.githubusercontent.com/79134401/118246916-358bb180-b4c0-11eb-92b7-297775c2b5f8.png" height=800 width=350> <img src="https://user-images.githubusercontent.com/79134401/118247870-50125a80-b4c1-11eb-890a-906c4f9f2c32.gif" height=750 width=350>
 
