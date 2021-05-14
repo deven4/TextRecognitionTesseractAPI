@@ -20,4 +20,8 @@ If you wrote some text/character, it will try to recognise it, although it works
  * Glide
  * Viewmodel and LiveData
 
+# Screenshots
+ * Paint
+<img src="https://user-images.githubusercontent.com/79134401/118246916-358bb180-b4c0-11eb-92b7-297775c2b5f8.png" width=350>  <img src="https://user-images.githubusercontent.com/79134401/118247665-104b7300-b4c1-11eb-9ffc-7723f041410a.png" width=350>
+<img src="https://user-images.githubusercontent.com/79134401/118247870-50125a80-b4c1-11eb-890a-906c4f9f2c32.gif" width=350>
 
